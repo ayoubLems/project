@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["role"] = $role;
 
                             // Redirige l'utilisateur vers la page d'accueil
-                            header("location: index.php");
+                            header("location: /projet/components/produit/view.php");
                         } else {
                             // Affiche un message d'erreur si le mot de passe n'est pas valide
                             $password_err = "Le mot de passe que vous avez entré n'est pas valide.";
@@ -89,70 +89,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <?php require('templates/header.php') ?>
 
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-image: linear-gradient(to right, #003973, #E5E5BE);
-        height: 100vh;
-    }
-
-    .login-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .login-panel {
-        background-color: #ffffff;
-        padding: 20px 40px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80%;
-        max-width: 600px;
-    }
-
-    .login-image {
-        width: 300px;
-        height: 200px;
-        margin-bottom: 20px;
-        background: url('img/logo.png') no-repeat center;
-        background-size: contain;
-    }
-
-    .btn {
-        background-color: #003973;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 16px;
-        transition: all 0.3s;
-    }
-
-    .btn:hover {
-        background-color: #E5E5BE;
-    }
-
-    .has-error {
-        border-color: red;
-    }
-
-    .help-block {
-        color: red;
-    }
-</style>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" type="text/css" href="/projet/css/style2.css">
+</head>
+<body>
 <div class="login-container">
     <div class="login-panel">
         <div class="login-image"></div>
@@ -177,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </div>
+</body>
+</html>
 
 <?php require('templates/footer.php') ?>
-

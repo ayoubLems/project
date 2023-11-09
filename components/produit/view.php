@@ -10,14 +10,14 @@ require_once($path . 'connect.php');
 session_start();
 
 // Vérification des autorisations de l'utilisateur
-if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['role'] == 'admin'|| $_SESSION['role'] == 'customer')) {
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'customer'))) {
 	// Si l'utilisateur n'est pas connecté ou n'a pas les autorisations nécessaires, affichez un message d'erreur et arrêtez l'exécution du script
 	echo "Unauthorized Access";
 	return;
 }
 
-// Requête SQL pour récupérer tous les produits
-$ReadSql = "SELECT * FROM `produits`";
+// Requête SQL pour récupérer tous les champs de la table "produit"
+$ReadSql = "SELECT * FROM `produit`";
 $res = mysqli_query($connection, $ReadSql);
 
 ?>
@@ -29,10 +29,18 @@ $res = mysqli_query($connection, $ReadSql);
 	<table class="table "> 
 	<thead> 
 		<tr> 
-			<th>Prod No.</th> 
-			<th>Type de produit</th> 
-			<th>Price</th> 
-			<th>Description</th>
+			<?php
+			// Récupération des noms des champs de la table "produit"
+			$field_names = array();
+			while ($field = mysqli_fetch_field($res)) {
+				$field_names[] = $field->name;
+			}
+
+			// Affichage des noms des champs comme en-têtes de colonnes
+			foreach ($field_names as $field_name) {
+				echo "<th>" . $field_name . "</th>";
+			}
+			?>
 			<th>Action</th>
 		</tr> 
 	</thead> 
@@ -42,57 +50,18 @@ $res = mysqli_query($connection, $ReadSql);
 	while($r = mysqli_fetch_assoc($res)){
 	?>
 		<tr> 
-			<th scope="row"><?php echo $r['id']; ?></th> 
-			<td><?php echo $r['type']; ?></td> 
-			<td><?php echo $r['price']; ?></td> 
-			<td><?php echo $r['description']; ?></td> 
+			<?php
+			// Affichage des valeurs de chaque champ dans une ligne
+			foreach ($field_names as $field_name) {
+				echo "<td>" . $r[$field_name] . "</td>";
+			}
+			?>
 			<td>
-				<a href="update.php?id=<?php echo $r['id']; ?>"><button type="button" class="btn btn-info">Edit</button></a>
-
-				<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal<?php echo $r['id']; ?>">Delete</button>
-
-				<!-- Modal pour confirmer la suppression d'un produit -->
-				  <div class="modal fade" id="myModal<?php echo $r['id']; ?>" role="dialog">
-				    <div class="modal-dialog">
-				      <div class="modal-content">
-				        <div class="modal-header">
-                          <!-- Titre du modal -->
-                          <h5 class="modal-title">Delete matching</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-				        </div>
-				        <div class="modal-body">
-				          <!-- Message de confirmation -->
-				          <p>Are you sure?</p>
-				        </div>
-				        <div class="modal-footer">
-                          <!-- Bouton Annuler pour fermer le modal -->
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                          <!-- Bouton pour supprimer définitivement le produit -->
-				          <a href="delete.php?id=<?php echo $r['id']; ?>"><button type="button" class="btn btn-danger"> Yes, Delete</button></a>
-					        </div>
-					      </div>
-					      
-					    </div>
-					  </div>
-
-				</td>
-			</tr> 
+			<a href="ajouter.php?product_id=<?php echo $r['id']; ?>"><button type="button" class="btn btn-primary">Ajouter aliment</button></a>		
+		</tr> 
 		<?php } ?>
-		</tbody> 
-		</table>
-	</div>
-
-  
-<div id="confirm" class="modal hide fade">
-  <div class="modal-body">
-    Are you sure?
-  </div>
-  <div class="modal-footer">
-    
-    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-  </div>
+	</tbody> 
+	</table>
 </div>
 
 <?php require($path . 'templates/footer.php') ?>
