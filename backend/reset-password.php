@@ -69,11 +69,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/projet/css/style2.css">
+    <link rel="stylesheet" type="text/css" href="/projet/frontend/css/style2.css">
     <title>Reset Password</title>
 </head>
 <body>
-    <?php require('templates/header.php') ?>
+    <?php require('../frontend/templates/header.php') ?>
     <div class="login-container">
         <div class="login-panel">
         <div class="login-image"></div>
@@ -92,12 +92,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Submit">
-                    <a class="btn btn-link" href="/projet/login.php">Cancel</a>
+                    <a class="btn btn-link" href="login.php">Cancel</a>
                 </div>
             </form>
         </div>
     </div>
-    <?php require('templates/footer.php') ?>
+    <?php require('../frontend/templates/footer.php') ?>
 </body>
 </html>
 

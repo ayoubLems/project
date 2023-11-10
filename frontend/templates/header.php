@@ -31,28 +31,20 @@ $user_logged = false;
         <div class="navbar-collapse collapse justify-content-between">
             <ul class="navbar-nav" id="navbar">
                 <li class="nav-item active">
-                    <a class="nav-link text-dark" href="<?php echo $server; ?>index.php"><i class="fa fa-building text-dark"></i> Accueil</a>
+                    <a class="nav-link text-dark" href="<?php echo $server; ?>backend/index.php"><i class="fa fa-building text-dark"></i> Accueil</a>
                 </li>
                 
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                     $user_logged = true;
                     if ($_SESSION['role'] == 'admin') { ?>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="<?php echo $server; ?>components/produit/view.php">Produits</a>
+                            <a class="nav-link text-dark" href="<?php echo $server; ?>frontend/components/produit/view.php">Produits</a>
                         </li>
                     
                 <?php } 
                 } ?>
 
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                    $user_logged = true;
-                    if ($_SESSION['role'] == 'customer') { ?>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="<?php echo $server; ?>components/produit/add.php">Produits</a>
-                        </li>
-                    
-                <?php } 
-                } ?>
+
             </ul>
             <ul class="navbar-nav">
                 <div class="d-flex my-2 my-lg-0">
@@ -64,11 +56,11 @@ $user_logged = false;
                 <?php 
                 if ($user_logged) { ?>
                     <li class="nav-item mr-sm-2">
-                        <a class="nav-link btn btn-dark text-white" href="<?php echo $server; ?>logout.php"><span><i class="fa fa-sign-out text-white"></i></span>Sign Out</a>
+                        <a class="nav-link btn btn-dark text-white" href="<?php echo $server; ?>backend/logout.php"><span><i class="fa fa-sign-out text-white"></i></span>Sign Out</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item mr-sm-2">
-                        <a class="nav-link btn btn-primary text-white" href="<?php echo $server; ?>login.php"><span><i class="fa fa-sign-in text-white"></i></span> Sign In</a>
+                        <a class="nav-link btn btn-primary text-white" href="<?php echo $server; ?>backend/login.php"><span><i class="fa fa-sign-in text-white"></i></span> Sign In</a>
                     </li>
                 <?php } ?>
             </ul>

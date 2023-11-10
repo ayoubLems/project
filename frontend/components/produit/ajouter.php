@@ -4,7 +4,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/projet/";
 
 // Inclure le fichier de connexion à la base de données
-require_once($path . 'connect.php');
+require_once($path . 'backend/connect.php');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -89,15 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Effectuez ici le traitement nécessaire, par exemple, enregistrez les données dans la base de données
 
     // Rediriger vers la page accueil.php après le traitement
-    header("Location: /projet/index.php");
+    header("Location: /projet/backend/index.php");
     exit;
 }
 
 
 ?>
 
-<?php require($path . 'templates/header.php') ?>
-<link rel="stylesheet" type="text/css" href="/projet/css/style_ajouter.css">
+<?php require($path . 'frontend/templates/header.php') ?>
+<link rel="stylesheet" type="text/css" href="/projet/frontend/css/style_ajouter.css">
 
 
 <div class="container-fluid my-4">
@@ -160,4 +160,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 
-<?php require($path . 'templates/footer.php') ?>
+<?php require($path . 'frontend/templates/footer.php') ?>

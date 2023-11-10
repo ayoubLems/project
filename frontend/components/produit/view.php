@@ -4,7 +4,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/projet/";
 
 // connexion à la base de données
-require_once($path . 'connect.php');
+require_once($path . 'backend/connect.php');
 
 // Initialisation de la session
 session_start();
@@ -27,11 +27,11 @@ $res = mysqli_query($connection, $ReadSql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/projet/css/style_view.css">
+    <link rel="stylesheet" type="text/css" href="/projet/frontend/css/style_view.css">
     <title>Catalogue des produits</title>
 </head>
 <body>
-    <?php require($path . 'templates/header.php') ?>
+    <?php require($path . 'frontend/templates/header.php') ?>
     <div class="container-fluid my-4">
         <div class="row my-2">
             <h2>Catalogue des produits</h2>
@@ -139,6 +139,6 @@ $res = mysqli_query($connection, $ReadSql);
 		}
 	</style>
 
-    <?php require($path . 'templates/footer.php') ?>
+    <?php require($path . 'frontend/templates/footer.php') ?>
 </body>
 </html>

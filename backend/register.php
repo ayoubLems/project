@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<?php require('templates/header.php') ?>
+<?php require('../frontend/templates/header.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" type="text/css" href="/projet/css/style2.css">
+    <link rel="stylesheet" type="text/css" href="/projet/frontend/css/style2.css">
 </head>
 <body>
 <div class="login-container">
@@ -187,4 +187,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 </html>
 
-<?php require('templates/footer.php') ?>
+<?php require('../frontend/templates/footer.php') ?>

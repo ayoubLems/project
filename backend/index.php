@@ -1,10 +1,10 @@
 <?php
 // Définir le chemin de la racine du site web
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/projet/backend";
+$path .= "/projet/";
 
 // Inclure le fichier de connexion à la base de données
-require_once($path . 'connect.php');
+require_once('connect.php');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -30,7 +30,7 @@ $salt_value_g = $_SESSION['salt_value_g'];
 $sodium_value_g = $_SESSION['sodium_value_g'];
 ?>
 
-<?php require($path . 'templates/header.php') ?>
+<?php require($path . 'frontend/templates/header.php') ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -216,4 +216,4 @@ $sodium_value_g = $_SESSION['sodium_value_g'];
     </script>
 </body>
 </html>
-<?php require($path . 'templates/footer.php') ?>
+<?php require($path . 'frontend/templates/footer.php') ?>
