@@ -97,6 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php require($path . 'templates/header.php') ?>
+<link rel="stylesheet" type="text/css" href="/projet/css/style_ajouter.css">
+
 
 <div class="container-fluid my-4">
     <div class="row my-2">

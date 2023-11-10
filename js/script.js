@@ -12,11 +12,11 @@ const mainSection = document.querySelector('.main-section');
 
 // Fonction pour la recherche
 function search() {
-    console.log( produits); // Afficher dans la console le message "hello" et le tableau des produits
+    console.log( produit); // Afficher dans la console le message "hello" et le tableau des produits
     if (!searchItem.value) return; // Si la valeur de l'input est vide, arrêter la fonction
     mainSection.innerHTML = ''; // Vider le contenu de la section principale
     let match = false; // Initialiser une variable de correspondance à faux
-    produits.forEach(produit => { // Parcourir tous les produits
+    produit.forEach(produit => { // Parcourir tous les produits
         let title = produit.querySelector('.card-title').innerText.toLowerCase(); // Récupérer le titre du produit en minuscules
         if (title.includes(searchItem.value.toLowerCase())) { // Si le titre contient la valeur recherchée en minuscules
             mainSection.appendChild(produit) // Ajouter le produit à la section principale

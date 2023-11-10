@@ -1,7 +1,7 @@
 <?php
 // Définir le chemin de la racine du site web
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/projet/";
+$path .= "/projet/backend";
 
 // Inclure le fichier de connexion à la base de données
 require_once($path . 'connect.php');
