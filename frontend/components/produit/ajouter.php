@@ -1,25 +1,19 @@
 <?php
-// Définir le chemin de la racine du site web
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/projet/";
 
-// Inclure le fichier de connexion à la base de données
 require_once($path . 'backend/connect.php');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Initialisation de la session
 session_start();
 
-// Vérification des autorisations de l'utilisateur
 if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'customer'))) {
-    // Si l'utilisateur n'est pas connecté ou n'a pas les autorisations nécessaires, afficher un message d'erreur et arrêter l'exécution du script
     echo "Unauthorized Access";
     return;
 }
 
-// Initialiser les variables pour stocker les valeurs nutritionnelles du produit
 $product_name_fr = "";
 $nutrition_data_per = "";
 $energy_kcal_value_kcal = "";
@@ -32,18 +26,15 @@ $proteins_value_g = "";
 $salt_value_g = "";
 $sodium_value_g = "";
 
-// Vérifier si un identifiant de produit a été transmis via GET
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
 
-    // Requête SQL pour récupérer les valeurs nutritionnelles du produit correspondant à partir de la base de données
     $query = "SELECT product_name_fr, nutrition_data_per, energy_kcal_value_kcal, fat_value_g, saturated_fat_value_g, carbohydrates_value_g, sugars_value_g, fiber_value_g, proteins_value_g, salt_value_g, sodium_value_g FROM produit WHERE id = $product_id";
     $result = mysqli_query($connection, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
 
-        // Récupérer les valeurs nutritionnelles du produit
         $product_name_fr = $row['product_name_fr'];
         $nutrition_data_per = $row['nutrition_data_per'];
         $energy_kcal_value_kcal = $row['energy_kcal_value_kcal'];
@@ -58,10 +49,7 @@ if (isset($_GET['product_id'])) {
     }
 }
 
-// Traitement du formulaire
-// Traitement du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
     $product_id = $_POST['product_id'];
     $product_name_fr = $_POST['product_name_fr'];
     $energy_100g = $_POST['energy_100g'];
@@ -74,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $salt_value_g = $_POST['salt_value_g'];
     $sodium_value_g = $_POST['sodium_value_g'];
 
-    // Stocker les données dans des variables de session
     $_SESSION['product_name_fr'] = $product_name_fr;
     $_SESSION['energy_kcal_value_kcal'] = $energy_100g; 
     $_SESSION['fat_value_g'] = $fat_value_g;
@@ -86,9 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['salt_value_g'] = $salt_value_g;
     $_SESSION['sodium_value_g'] = $sodium_value_g;
 
-    // Effectuez ici le traitement nécessaire, par exemple, enregistrez les données dans la base de données
-
-    // Rediriger vers la page accueil.php après le traitement
+    
     header("Location: /projet/backend/index.php");
     exit;
 }
